@@ -17,9 +17,29 @@ We always recommend using `DSClassifierMultiQ` since it is the 
 most stable and fastest implementation. Multi-class implementations
 can handle binary problems as well.
 
+## Requirements
+
+- Python 3.12+ (tested with 3.12.3)
+- NumPy >= 2.4.3
+- Pandas >= 3.0.1
+- PyTorch >= 2.10.0
+- scikit-learn >= 1.8.0
+- scipy >= 1.17.1
+- dill >= 0.4.1
+
+For GPU acceleration (optional):
+- CUDA-compatible GPU
+- [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) 12.8+
+
 ## Installation
 
     pip install git+https://github.com/Sergio-P/DSGD.git
+
+Or for development:
+
+    git clone https://github.com/Sergio-P/DSGD.git
+    cd DSGD
+    pip install -e .
 
 ## Usage
 
@@ -177,3 +197,42 @@ defined its configuration.
 
 For a full and simple example please refer to the [Iris example](https://github.com/Sergio-P/DSGD/blob/master/examples/ds_model_iris_3.py). 
 Uncomment and comment lines to see other features.
+
+## Performance Optimization
+
+### GPU Acceleration with CUDA
+
+The classifier supports CUDA for significant speedups (5-10× faster than CPU):
+
+    import torch
+
+    # Automatically use GPU if available
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    DSC = DSClassifierMultiQ(
+        3,
+        device=device,
+        batch_size=16000,  # Larger batches work well on GPU
+        num_workers=0,     # Use 0 workers with GPU
+        force_precompute=True  # Precompute rules for 2-5× speedup (uses more memory)
+    )
+
+### Performance Tips
+
+1. **Use CUDA when available**: 5-10× speedup over CPU
+2. **Enable force_precompute**: 2-5× additional speedup (requires more memory)
+3. **Increase batch_size on GPU**: 8000-16000 samples work well
+4. **Keep rule count reasonable**: Under 500 rules for best performance
+5. **Use precompute_rules for moderate datasets**: Caches rule evaluations
+
+For detailed performance analysis and optimization strategies, see [TECHNICAL_DOCUMENTATION_DSClassifierMultiQ.md](TECHNICAL_DOCUMENTATION_DSClassifierMultiQ.md).
+
+## Technical Documentation
+
+Complete technical documentation including:
+- Memory usage analysis
+- Performance bottlenecks
+- CUDA optimization opportunities
+- Implementation details
+
+See [TECHNICAL_DOCUMENTATION_DSClassifierMultiQ.md](TECHNICAL_DOCUMENTATION_DSClassifierMultiQ.md) for details.
