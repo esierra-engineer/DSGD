@@ -7,3 +7,9 @@ credentials.json
 *.bin
 *.df.gzip
 ds
+
+# Python package build artifacts
+*.egg-info/
+dist/
+build/
+__pycache__/
