@@ -1,3 +1,11 @@
+Metadata-Version: 2.1
+Name: dsgd
+Version: 0.2
+Summary: Tabular interpretable classifier based on Dempster-Shafer Theory and Gradient Descent
+Home-page: https://github.com/Sergio-P/DSGD
+Author: Sergio Peñafiel
+Description-Content-Type: text/markdown
+
 # DSGD
 
 Tabular interpretable classifier based on Dempster-Shafer Theory and 
@@ -177,34 +185,3 @@ defined its configuration.
 
 For a full and simple example please refer to the [Iris example](https://github.com/Sergio-P/DSGD/blob/master/examples/ds_model_iris_3.py). 
 Uncomment and comment lines to see other features.
-
-## Documentation
-
-For detailed technical information, performance analysis, and optimization guidance:
-
-- **[Technical Documentation](TECHNICAL_DOCUMENTATION.md)**: Complete technical reference for DSClassifierMultiQ
-  - Architecture and algorithm details
-  - Memory usage analysis and profiling
-  - Performance bottlenecks identification
-  - CUDA optimization opportunities
-  - Configuration recommendations
-
-- **[Environment Compatibility](ENVIRONMENT_COMPATIBILITY.md)**: Environment setup and compatibility guide
-  - Python 3.10+ compatibility verification
-  - Updated package requirements
-  - CUDA setup instructions
-  - Migration guide for existing projects
-  - Performance benchmarks
-
-## Requirements
-
-This project has been tested and is compatible with:
-
-- Python 3.10 or later
-- PyTorch 2.0+ (with optional CUDA support)
-- NumPy 2.0+
-- Pandas 2.0+
-- Scikit-learn 1.3+
-- SciPy 1.10+
-
-See `requirements.txt` for complete dependency list and version specifications.
